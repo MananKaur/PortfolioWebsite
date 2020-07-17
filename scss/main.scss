@@ -1,0 +1,94 @@
+@import 'config';
+@import 'menu';
+
+* {
+    box-sizing: border-box;
+    //allows us to include the padding and border
+    // in an element's total width and height.
+}
+
+body {
+    @include background;
+    background: $primary-color;
+    color: #fff;
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+}
+
+//Headings
+h1,
+h2,
+h3 {
+    margin: 0;
+    font-weight: 400;
+
+    //the &.lg-heading determines the h tag with the class lg-heading, not nested in it.
+    &.lg-heading {
+        font-size: 6rem;
+        //rem is the multiplier of html font size. The default size is 16px.
+    }
+
+    &.sm-heading {
+        margin-bottom: 2rem;
+        //padding : top/bottom padding, left/right padding
+        padding: 0.2rem 1 rem;
+        background: rgba(lighten($primary-color, 2), 0.5);
+        //lighten just lights the color mentioned by the given quantity.
+        //Because I want it to translucent to the bg image, 
+        //I am using rgba wround lighten with the opacity quantity .5
+    }
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    //text-decor to take away the ugly html underlines
+}
+
+header {
+    position: fixed;
+    //because we want the menu button i.e the header to be fixed there no matter what.
+    //So even if I scroll up/down the menu button should just stay there.
+    z-index: 2;
+    //he z-index property specifies the stack order of an element.
+    //An element with greater stack order is always in front of an element with a lower stack order.
+    //The property works only for positioned elems.
+    width: 100%
+}
+
+.text-secondary {
+    color: $secondary-color;
+}
+
+main {
+    padding: 4rem;
+    height: 100%;
+
+    .icons {
+        margin-top: 1rem;
+
+        a {
+            padding: 0.4rem;
+
+            &:hover {
+                color: $secondary-color;
+                //to use a mixin/function, we write @include mixin name
+                @include easeOut();
+            }
+        }
+
+    }
+
+    &#home {
+        overflow: hidden;
+        //hides the scroll bar for the times we have text 
+        //that doesnt fit in the given height of the box.
+
+        h1 {
+            margin-top: 20vh;
+            //vh = viewport height
+        }
+    }
+}
